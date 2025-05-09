@@ -16,6 +16,9 @@
     <name>product</name>
     <description>product</description>
     <url/>
+    <dependencies>
+
+    </dependencies>
 
 
     <build>

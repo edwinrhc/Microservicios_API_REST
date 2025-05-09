@@ -2,6 +2,7 @@ package com.paymentchain.product.controller;
 
 import com.paymentchain.product.entities.Product;
 import com.paymentchain.product.respository.ProductRepository;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ public class ProductRestController {
         return productRepository.findAll();
     }
 
+    @Operation(summary = "Obtener producto por ID")
     @GetMapping("/{id}")
     public ResponseEntity<?> get(@PathVariable long id) {
         Optional<Product> product = productRepository.findById(id);
