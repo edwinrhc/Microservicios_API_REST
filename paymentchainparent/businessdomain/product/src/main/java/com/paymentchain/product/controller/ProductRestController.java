@@ -3,6 +3,7 @@ package com.paymentchain.product.controller;
 import com.paymentchain.product.entities.Product;
 import com.paymentchain.product.respository.ProductRepository;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,8 @@ public class ProductRestController {
 
     @Operation(summary = "Obtener producto por ID")
     @GetMapping("/{id}")
-    public ResponseEntity<?> get(@PathVariable long id) {
+    public ResponseEntity<?> get(
+            @PathVariable("id") long id) {
         Optional<Product> product = productRepository.findById(id);
         if (product.isPresent()) {
             return new ResponseEntity<>(product.get(), HttpStatus.OK);
@@ -35,7 +37,7 @@ public class ProductRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> put(@PathVariable long id, @RequestBody Product input) {
+    public ResponseEntity<?> put(@PathVariable("id") long id, @RequestBody Product input) {
         Optional<Product> optionalproduct = productRepository.findById(id);
         if (optionalproduct.isPresent()) {
             Product newcustomer = optionalproduct.get();
@@ -54,7 +56,7 @@ public class ProductRestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable long id) {
+    public ResponseEntity<?> delete(@PathVariable("id") long id) {
         productRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
