@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 /**
  *
- * @author sotobotero
+ * @author edwinrhc
  */
 @RestController
 @RequestMapping("/customer")
@@ -38,7 +38,7 @@ public class CustomerRestController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<?> get(@PathVariable long id) {
+    public ResponseEntity<?> get(@PathVariable("id") long id) {
          Optional<Customer> customer = customerRepository.findById(id);
         if (customer.isPresent()) {
             return new ResponseEntity<>(customer.get(), HttpStatus.OK);
@@ -48,7 +48,7 @@ public class CustomerRestController {
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<?> put(@PathVariable long id, @RequestBody Customer input) {
+    public ResponseEntity<?> put(@PathVariable("id") long id, @RequestBody Customer input) {
          Optional<Customer> optionalcustomer = customerRepository.findById(id);
         if (optionalcustomer.isPresent()) {
             Customer newcustomer = optionalcustomer.get();
@@ -63,12 +63,13 @@ public class CustomerRestController {
     
     @PostMapping
     public ResponseEntity<?> post(@RequestBody Customer input) {
+        input.getProducts().forEach(x -> x.setCustomer(input));
         Customer save = customerRepository.save(input);
         return ResponseEntity.ok(save);
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable long id) {
+    public ResponseEntity<?> delete(@PathVariable("id") long id) {
          customerRepository.deleteById(id);
          return new ResponseEntity<>(HttpStatus.OK);
     }

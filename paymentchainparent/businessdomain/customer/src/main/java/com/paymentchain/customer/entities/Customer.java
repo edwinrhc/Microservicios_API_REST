@@ -11,10 +11,7 @@ import lombok.Data;
 
 import java.util.List;
 
-/**
- *
- * @author sotobotero
- */
+
 @Data
 @Entity
 public class Customer {
@@ -36,5 +33,5 @@ public class Customer {
    @Transient
    private List<?> transactions;
 
-   
+
 }
