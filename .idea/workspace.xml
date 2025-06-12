@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86d0eb6f-c1b5-414a-ac9b-33c4980ba0f4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-    </list>
+    <list default="true" id="86d0eb6f-c1b5-414a-ac9b-33c4980ba0f4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,34 +42,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.All in paymentchainparent.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.billing [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.billing [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.customer [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.customer [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.paymentchainparent [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.paymentchainparent [compile].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/0.Cursos/Proyecto/Intellij/Microservicios_API_REST/paymentchainparent/modules/businessdomain&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.All in paymentchainparent.executor": "Run",
+    "Maven.billing [clean].executor": "Run",
+    "Maven.billing [package].executor": "Run",
+    "Maven.customer [clean].executor": "Run",
+    "Maven.customer [package].executor": "Run",
+    "Maven.paymentchainparent [clean].executor": "Run",
+    "Maven.paymentchainparent [compile].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/0.Cursos/Proyecto/Intellij/Microservicios_API_REST/paymentchainparent/modules/businessdomain",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\0.Cursos\Proyecto\Intellij\Microservicios_API_REST\paymentchainparent\modules\businessdomain" />
@@ -80,6 +79,16 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\0.Cursos\Proyecto\Intellij\Microservicios_API_REST\paymentchainparent\modules\businessdomain\modules" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
   </component>
   <component name="RunManager" selected="JUnit.All in paymentchainparent">
     <configuration name="All in paymentchainparent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -138,7 +147,7 @@
       <workItem from="1746682240805" duration="2366000" />
       <workItem from="1746684835178" duration="670000" />
       <workItem from="1746850591330" duration="73000" />
-      <workItem from="1749700557622" duration="253000" />
+      <workItem from="1749700557622" duration="513000" />
     </task>
     <servers />
   </component>
