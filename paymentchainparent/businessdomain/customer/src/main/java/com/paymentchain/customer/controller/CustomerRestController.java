@@ -107,7 +107,7 @@ public class CustomerRestController {
         if (customer.isPresent()) {
             List<CustomerProduct> products = customer.get().getProducts();
             products.forEach(x -> {
-                String productName = getProductName(x.getId());
+                String productName = getProductName(x.getProductId());
                 x.setProductName(productName);
             });
             return new ResponseEntity<>(customer.get(), HttpStatus.OK);
