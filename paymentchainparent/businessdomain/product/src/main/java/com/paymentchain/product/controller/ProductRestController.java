@@ -1,9 +1,8 @@
 package com.paymentchain.product.controller;
 
 import com.paymentchain.product.entities.Product;
-import com.paymentchain.product.respository.ProductRepository;
+import com.paymentchain.product.repository.ProductRepository;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

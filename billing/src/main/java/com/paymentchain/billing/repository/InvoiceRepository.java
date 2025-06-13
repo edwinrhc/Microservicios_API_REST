@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.paymentchain.billing.respository;
+package com.paymentchain.billing.repository;
 
 import com.paymentchain.billing.entities.Invoice;
 import org.springframework.data.jpa.repository.JpaRepository;
