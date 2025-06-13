@@ -5,24 +5,26 @@
  */
 package com.paymentchain.customer.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.paymentchain.customer.entities.Customer;
 import com.paymentchain.customer.respository.CustomerRepository;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.epoll.EpollChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
+import org.springframework.http.*;
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import java.time.Duration;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -102,6 +104,21 @@ public class CustomerRestController {
     public ResponseEntity<?> delete(@PathVariable("id") long id) {
          customerRepository.deleteById(id);
          return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    public String getProductName(Long id){
+        WebClient build = webClientBuilder.clientConnector(new ReactorClientHttpConnector(client))
+                .baseUrl("http://localhost:8083/product")
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .defaultUriVariables(Collections.singletonMap("url","http://localhost:8083/product"))
+                .build();
+        JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
+                .retrieve().bodyToMono(JsonNode.class).block();
+
+        String name = block.get("name").asText();
+        return name;
+
+
     }
     
 }
