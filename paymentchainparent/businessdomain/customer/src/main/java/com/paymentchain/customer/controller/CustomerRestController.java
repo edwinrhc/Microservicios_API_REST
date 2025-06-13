@@ -7,6 +7,7 @@ package com.paymentchain.customer.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.paymentchain.customer.entities.Customer;
+import com.paymentchain.customer.entities.CustomerProduct;
 import com.paymentchain.customer.respository.CustomerRepository;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.epoll.EpollChannelOption;
@@ -14,8 +15,7 @@ import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
 import org.springframework.http.*;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.time.Duration;
@@ -25,12 +25,6 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 
@@ -105,6 +99,24 @@ public class CustomerRestController {
          customerRepository.deleteById(id);
          return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
+    @GetMapping("/full")
+    public ResponseEntity<Customer> getByCode(@RequestParam("code") String code) {
+        Optional<Customer> customer = Optional.ofNullable(customerRepository.findByCode(code));
+        if (customer.isPresent()) {
+            List<CustomerProduct> products = customer.get().getProducts();
+            products.forEach(x -> {
+                String productName = getProductName(x.getId());
+                x.setProductName(productName);
+            });
+            return new ResponseEntity<>(customer.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 
     public String getProductName(Long id){
         WebClient build = webClientBuilder.clientConnector(new ReactorClientHttpConnector(client))
