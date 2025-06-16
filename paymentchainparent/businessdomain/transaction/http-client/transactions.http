@@ -1,0 +1,59 @@
+
+### Crear transacción válida
+POST {{host}}/transactions
+Content-Type: application/json
+
+{
+  "reference": "TXN998",
+  "accountIban": "PE999999999999",
+  "date": "2025-06-16T10:00:00",
+  "amount": 200,
+  "fee": 10,
+  "description": "Pago por app",
+  "status": "PENDIENTE",
+  "channel": "WEB"
+}
+###
+
+### Crear transacción con errores de validación
+POST {{host}}/transactions
+Content-Type: application/json
+
+{
+  "reference": "",
+  "accountIban": "",
+  "date": null,
+  "amount": 0,
+  "fee": -1,
+  "description": "",
+  "status": null,
+  "channel": null
+}
+
+###
+
+### Obtener todas las transacciones
+
+GET {{host}}/transactions
+
+###
+
+### Buscar transacciones por cuenta
+GET {{host}}/transactions/by-account/PE999999999999
+
+###
+
+### Actualizar transacción
+PUT {{host}}/transactions/1
+Content-Type: application/json
+
+{
+  "reference": "TXN999-UPDATED",
+  "accountIban": "PE999999999999",
+  "date": "2025-06-17T14:00:00",
+  "amount": 120,
+  "fee": 5,
+  "description": "Modificación por reclamo",
+  "status": "LIQUIDADA",
+  "channel": "OFICINA"
+}
