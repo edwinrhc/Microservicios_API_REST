@@ -1,16 +1,50 @@
 package com.paymentchain.transaction.controllers;
 
+import com.paymentchain.transaction.dto.TransactionDTO;
+import com.paymentchain.transaction.entities.Transactions;
 import com.paymentchain.transaction.repository.TransactionRepository;
+import com.paymentchain.transaction.service.TransactionService;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/transactions")
+@AllArgsConstructor
+@Slf4j
 public class TransactionRestController {
 
-    @Autowired
-    TransactionRepository transactionRepository;
+    private final TransactionService transactionService;
+
+    @PostMapping
+    public Transactions create(@Valid @RequestBody TransactionDTO dto){
+        Transactions tx = transactionService.fromDTO(dto);
+        return transactionService.createTransaction(tx);
+    }
+
+    @PutMapping("/{id}")
+    public Transactions update(@PathVariable("id") Long id,@Valid @RequestBody TransactionDTO dto){
+        Transactions tx = transactionService.fromDTO(dto);
+        return transactionService.updateTransaction(id, tx);
+    }
+
+    @GetMapping
+    public List<Transactions> getAll(){
+        return transactionService.getAllTransactions();
+    }
+
+    @GetMapping("/by-account/{iban}")
+    public List<Transactions> getByAccount(@PathVariable("iban") String iban){
+        return transactionService.getTransactionsByAccount(iban);
+    }
+
+
+
 
 
 }
