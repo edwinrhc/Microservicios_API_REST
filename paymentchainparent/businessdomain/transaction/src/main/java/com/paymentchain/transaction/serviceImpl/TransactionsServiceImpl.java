@@ -76,6 +76,11 @@ public class TransactionsServiceImpl implements TransactionService {
     }
 
     @Override
+    public List<Transactions> getByAccount(String accountIban) {
+        return transactionRepository.findByAccountIban(accountIban);
+    }
+
+    @Override
     public Transactions fromDTO(TransactionDTO dto) {
         Transactions tx = new Transactions();
         tx.setReference(dto.getReference());

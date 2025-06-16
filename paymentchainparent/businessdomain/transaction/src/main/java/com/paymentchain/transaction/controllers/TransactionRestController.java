@@ -9,7 +9,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -41,6 +43,18 @@ public class TransactionRestController {
     @GetMapping("/by-account/{iban}")
     public List<Transactions> getByAccount(@PathVariable("iban") String iban){
         return transactionService.getTransactionsByAccount(iban);
+    }
+
+    @GetMapping("/customer/transactions")
+    public List<Transactions> get(@RequestParam(name="ibanAccount") String ibanAccount){
+        List<Transactions> transactions = transactionService.getByAccount(ibanAccount);
+
+        if(transactions.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    "No se encontraron transacciones para el cliente con el Iban: " + ibanAccount);
+        }
+
+        return transactionService.getByAccount(ibanAccount);
     }
 
 

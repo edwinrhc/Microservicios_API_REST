@@ -38,8 +38,13 @@ GET {{host}}/transactions
 
 ###
 
-### Buscar transacciones por cuenta
+### Buscar transacciones por cuenta @PathVariable
 GET {{host}}/transactions/by-account/PE999999999999
+
+###
+
+### Buscar transacciones por cuenta usando @RequestParam
+GET {{host}}/transactions/customer/transactions?ibanAccount=PE999999999999
 
 ###
 

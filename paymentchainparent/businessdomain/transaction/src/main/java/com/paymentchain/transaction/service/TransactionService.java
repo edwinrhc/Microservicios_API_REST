@@ -17,4 +17,6 @@ public interface TransactionService {
 
     Transactions fromDTO(TransactionDTO dto);
 
+    List<Transactions> getByAccount(String accountIban);
+
 }
