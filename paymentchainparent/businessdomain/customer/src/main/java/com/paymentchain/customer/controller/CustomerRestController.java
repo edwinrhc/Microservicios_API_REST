@@ -105,20 +105,30 @@ public class CustomerRestController {
     public ResponseEntity<Customer> getByCode(@RequestParam("code") String code) {
         Optional<Customer> customer = Optional.ofNullable(customerRepository.findByCode(code));
         if (customer.isPresent()) {
+
+            // for each product find it name
             List<CustomerProduct> products = customer.get().getProducts();
             products.forEach(x -> {
                 String productName = getProductName(x.getProductId());
                 x.setProductName(productName);
             });
+
+            // find all transactions that belong this account number
+            List<?> transactions = getTransactions(customer.get().getIban());
+             customer.get().setTransactions(transactions);
             return new ResponseEntity<>(customer.get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
+    /**
+     * Call Product Microservice, find product by Id and return it name
+     * @param id of product to find
+     * @return name of prduct if it was find
+     */
 
-
-    public String getProductName(Long id){
+    private String getProductName(Long id){
         WebClient build = webClientBuilder.clientConnector(new ReactorClientHttpConnector(client))
                 .baseUrl("http://localhost:8083/product")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
@@ -126,11 +136,23 @@ public class CustomerRestController {
                 .build();
         JsonNode block = build.method(HttpMethod.GET).uri("/" + id)
                 .retrieve().bodyToMono(JsonNode.class).block();
-
         String name = block.get("name").asText();
         return name;
-
-
     }
+
+    private List<?> getTransactions(String iban){
+        WebClient build = webClientBuilder.clientConnector(new ReactorClientHttpConnector(client))
+                .baseUrl("http://localhost:8084/transactions")
+                .defaultHeader(HttpHeaders.CONTENT_TYPE,MediaType.APPLICATION_JSON_VALUE)
+                .build();
+
+        return build.method(HttpMethod.GET).uri(uriBuilder
+                -> uriBuilder
+                .path("/customer/transactions")
+                .queryParam("ibanAccount",iban)
+                .build())
+                .retrieve().bodyToFlux(Object.class).collectList().block();
+    }
+
     
 }
