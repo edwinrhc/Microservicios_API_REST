@@ -1,9 +1,6 @@
 package com.paymentchain.transaction.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -22,6 +19,9 @@ public class Transactions {
     private double amount ;
     private double fee;
     private String description;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private Status status;
     private Channel channel;
 
