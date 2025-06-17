@@ -25,6 +25,8 @@ public class TransactionRestController {
 
     @PostMapping
     public Transactions create(@Valid @RequestBody TransactionDTO dto){
+        log.info("Creating transaction: {}", dto);
+        log.info("Status recibido: " + dto.getStatus());
         Transactions tx = transactionService.fromDTO(dto);
         return transactionService.createTransaction(tx);
     }

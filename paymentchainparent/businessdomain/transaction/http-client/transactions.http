@@ -1,19 +1,51 @@
 
-### Crear transacción válida
+### Crear transacción válida ejemplo1 ibanAccount 000251487
 POST {{host}}/transactions
 Content-Type: application/json
 
 {
-  "reference": "TXN998",
-  "accountIban": "PE999999999999",
-  "date": "2025-06-16T10:00:00",
-  "amount": 200,
-  "fee": 10,
-  "description": "Pago por app",
-  "status": "PENDIENTE",
+  "id": 0,
+  "reference": "6524ld",
+  "accountIban": "000251487",
+  "date": "2022-08-15T11:36:07.683Z",
+  "amount": 450,
+  "fee": 2,
+  "description": "Consignación",
+  "status": "LIQUIDADA",
+  "channel": "OFICINA"
+}
+
+### Crear transacción válida ejemplo 2 ibanAccount 000251487
+POST {{host}}/transactions
+Content-Type: application/json
+
+{
+  "id": 0,
+  "reference": "hg52487",
+  "accountIban": "000251487",
+  "date": "2022-11-10T15:20:00.437Z",
+  "amount": 100,
+  "fee": 3,
+  "description": "Retiro",
+  "status": "RECHAZADA",
   "channel": "WEB"
 }
-###
+
+### Crear transacción válida ejemplo 03 ibanAccount 000257849
+POST {{host}}/transactions
+Content-Type: application/json
+
+{
+  "id": 0,
+  "reference": "53254jks",
+  "accountIban": "000257849",
+  "date": "2022-11-10T15:20:00.437Z",
+  "amount": 100,
+  "fee": 3,
+  "description": "Retiro",
+  "status": "LIQUIDADA",
+  "channel": "WEB"
+}
 
 ### Crear transacción con errores de validación
 POST {{host}}/transactions
@@ -30,23 +62,17 @@ Content-Type: application/json
   "channel": null
 }
 
-###
-
 ### Obtener todas las transacciones
-
 GET {{host}}/transactions
 
-###
 
 ### Buscar transacciones por cuenta @PathVariable
 GET {{host}}/transactions/by-account/PE999999999999
 
-###
 
 ### Buscar transacciones por cuenta usando @RequestParam
-GET {{host}}/transactions/customer/transactions?ibanAccount=PE999999999999
+GET {{host}}/transactions/customer/transactions?ibanAccount=000251487
 
-###
 
 ### Actualizar transacción
 PUT {{host}}/transactions/1

@@ -1,5 +1,7 @@
 package com.paymentchain.transaction.entities;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
 @Getter
@@ -18,17 +20,18 @@ public enum Status {
         this.descripcion = descripcion;
     }
 
-    /**
-     * Busca un EstadoPago por su código.
-     * @param codigo el código a buscar
-     * @return el EstadoPago correspondiente, o lanza IllegalArgumentException si no existe
-     */
-    public static Status fromCodigo(String codigo) {
-        for (Status e : values()) {
-            if (e.codigo.equals(codigo)) {
-                return e;
+    @JsonCreator
+    public static Status fromJson(String value) {
+        for (Status s : values()) {
+            if (s.name().equalsIgnoreCase(value) || s.codigo.equals(value)) {
+                return s;
             }
         }
-        throw new IllegalArgumentException("Código del Status inválido: " + codigo);
+        throw new IllegalArgumentException("Estado inválido: " + value);
+    }
+
+    @JsonValue
+    public String toJson() {
+        return this.name(); // o return this.codigo; si prefieres mostrar "01", "02", etc.
     }
 }
