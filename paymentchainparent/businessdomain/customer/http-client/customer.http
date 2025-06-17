@@ -1,0 +1,34 @@
+### Crear transacción válida
+POST {{host}}/customer
+Content-Type: application/json
+
+{
+  "id": 0,
+  "code": "01",
+  "name": "Carlos",
+  "phone": "string",
+  "iban": "000251487",
+  "surname": "string",
+  "address": "string",
+  "products": [
+    {
+      "id": 0,
+      "productId": 1,
+      "productName": "string"
+    },
+    {
+      "id": 0,
+      "productId": 2,
+      "productName": "string"
+    }
+  ],
+  "transactions": [
+    {}
+  ]
+}
+
+### Listar Customr por Full code ejemplo 01
+GET {{host}}/customer/full?code=01
+
+### Listar todo Customer
+GET {{host}}/customer

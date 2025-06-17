@@ -115,7 +115,7 @@ public class CustomerRestController {
 
             // find all transactions that belong this account number
             List<?> transactions = getTransactions(customer.get().getIban());
-             customer.get().setTransactions(transactions);
+            customer.get().setTransactions(transactions);
             return new ResponseEntity<>(customer.get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
