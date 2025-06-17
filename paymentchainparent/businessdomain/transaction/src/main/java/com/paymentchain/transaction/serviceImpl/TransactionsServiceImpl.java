@@ -65,15 +65,20 @@ public class TransactionsServiceImpl implements TransactionService {
             throw new IllegalArgumentException("La fecha de la transacción no puede ser nula");
         }
 
-        if(tx.getFee() > 0){
+        if (tx.getFee() > 0) {
             tx.setAmount(tx.getAmount() - tx.getFee());
         }
-        if(tx.getDate().after(new Date())){
-            tx.setStatus(Status.PENDIENTE);
-        }else{
-            tx.setStatus(Status.LIQUIDADA);
+
+        // Solo asigna status si no vino en el request
+        if (tx.getStatus() == null) {
+            if (tx.getDate().after(new Date())) {
+                tx.setStatus(Status.PENDIENTE);
+            } else {
+                tx.setStatus(Status.LIQUIDADA);
+            }
         }
     }
+
 
     @Override
     public List<Transactions> getByAccount(String accountIban) {
