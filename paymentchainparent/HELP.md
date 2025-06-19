@@ -17,7 +17,10 @@ The following guides illustrate how to use some features concretely:
 * [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
 * [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
 
+* The recommended port range is 49152–65535, as these ports are private and typically used for dynamic or temporary purposes, making them suitable for local development.
+
 
 ### Main comands and urls
-1. [Acces to h2 database](http://localhost:8081/h2-console/)
+1. [Access to h2 database](http://localhost:8081/h2-console/)
+2. [REST get method check profile on customer](http://localhost:8081/customer/check)
 
