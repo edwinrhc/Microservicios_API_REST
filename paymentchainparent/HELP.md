@@ -17,3 +17,7 @@ The following guides illustrate how to use some features concretely:
 * [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
 * [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
 
+
+### Main comands and urls
+1. [Acces to h2 database](http://localhost:8081/h2-console/)
+
